@@ -1,4 +1,5 @@
 # 쿠버네티스(k8s) 로컬 개발환경 구축
+
 #### 1. XShell 설치 : 생성될 Master/Woker Node에 접속할 툴 [다운로드](https://www.netsarang.com/en/free-for-home-school/)
 #### 2. Oracle VM VirtualBox v6.1.26 설치 : VM 및 내부 네트워크 생성 툴 [다운로드](https://download.virtualbox.org/virtualbox/6.1.26/VirtualBox-6.1.26-145957-Win.exe)
 #### 3. Vagrant 설치 및 k8s 설치 스크립트 실행 : 자동으로 VirtualBox를 이용해 VM들을 생성하고, K8S관련 설치 파일들이 실행됨
