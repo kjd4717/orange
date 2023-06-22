@@ -33,7 +33,6 @@ spec:
       labels:
         app: palette3-phone
     spec:
-      hostNetwork: true
       containers:
         - name: palette3-phone
           image: 172.16.0.100:5000/palette3-api:2023.0622.01
