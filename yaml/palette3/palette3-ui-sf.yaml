@@ -8,7 +8,7 @@ spec:
   selector:
     app: palette3-ui
   ports:
-    - name: redis
+    - name: palette3-ui
       protocol: TCP
       port: 3003
       targetPort: 3003
