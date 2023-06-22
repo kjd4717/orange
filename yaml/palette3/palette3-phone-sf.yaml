@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: orange
   name: svc-palette3-phone
   labels:
     app: palette3-phone
@@ -18,7 +19,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: palette3-phone
-  namespace: default
+  namespace: orange
   labels:
     app: palette3-phone
 spec:
