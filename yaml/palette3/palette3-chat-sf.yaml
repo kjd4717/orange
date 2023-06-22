@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: palette3-auth
+  name: palette3-chat
   namespace: default
   labels:
-    app: palette3-auth
+    app: palette3-chat
 spec:
   replicas: 1
-  serviceName: svc-palette3-auth
+  serviceName: svc-palette3-chat
   #podManagementPolicy: Parallel
   selector:
     matchLabels:
-      app: palette3-auth
+      app: palette3-chat
   template:
     metadata:
       labels:
-        app: palette3-auth
+        app: palette3-chat
     spec:
       containers:
-        - name: palette3-auth
+        - name: palette3-chat
           image: 172.16.0.100:5000/palette3-api:2023.0621.34
           env:
             - name: JAVA_OPTS
-              value: "-Dspring.application.name=palette3-auth -Dspring.profiles.active=production,production-chat,production-phone -Djasypt.key=paletteHello -Dpalette.chat.cipher=Y -Dpalette.chat.key=MnR6bzI4bjdocGEw -Dchat.enabled=false -Dchat.router-enabled=false -Dk8s.node.name=${MY_NODE_NAME} -Dk8s.pod.name=${MY_POD_NAME} -Dk8s.pod.namespace=${MY_POD_NAMESPACE} -Dk8s.pod.ip=${MY_POD_IP}"
+              value: "-Dspring.application.name=palette3-chat -Dspring.profiles.active=production,production-chat,production-phone -Djasypt.key=paletteHello -Dpalette.chat.cipher=Y -Dpalette.chat.key=MnR6bzI4bjdocGEw -Dchat.enabled=false -Dchat.router-enabled=false -Dk8s.node.name=${MY_NODE_NAME} -Dk8s.pod.name=${MY_POD_NAME} -Dk8s.pod.namespace=${MY_POD_NAMESPACE} -Dk8s.pod.ip=${MY_POD_IP}"
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
