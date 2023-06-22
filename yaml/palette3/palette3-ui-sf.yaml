@@ -5,13 +5,14 @@ metadata:
   labels:
     app: palette3-ui
 spec:
+  type: LoadBalancer
   selector:
     app: palette3-ui
   ports:
     - name: palette3-ui
       protocol: TCP
       port: 3003
-      targetPort: 3003
+      targetPort: 31000
 ---
 apiVersion: apps/v1
 kind: StatefulSet
