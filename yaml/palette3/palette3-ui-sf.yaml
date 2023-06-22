@@ -33,6 +33,7 @@ spec:
       labels:
         app: palette3-ui
     spec:
+      hostNetwork: true
       containers:
         - name: palette3-ui
           image: 172.16.0.100:5000/palette3-ui:2023.0622.01
