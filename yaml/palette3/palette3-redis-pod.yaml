@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-palette3-redis
+  labels:
+    app: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - name: redis
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: palette3-redis
+  labels:
+    app: redis
+spec:
+  containers:
+    - name: palette3-redis
+      image: redis:5.0.3
+      ports:
+        - containerPort: 6379
+          name: redis
+      volumeMounts:
+        - name: redis-data
+          mountPath: /data
+  volumes:
+    - name: redis-data
+      nfs:
+        server: 192.168.56.99
+        path: /orange/nfs/redis
