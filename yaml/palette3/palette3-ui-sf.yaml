@@ -12,7 +12,7 @@ spec:
     - name: palette3-ui
       protocol: TCP
       port: 3003
-      targetPort: 31000
+      targetPort: 3003
 ---
 apiVersion: apps/v1
 kind: StatefulSet

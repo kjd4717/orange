@@ -12,7 +12,7 @@ spec:
     - name: palette3-phone
       protocol: TCP
       port: 8080
-      targetPort: 31004
+      targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: StatefulSet
