@@ -56,7 +56,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-
           volumeMounts:
             - name: palette-repository
               mountPath: /orange/app/palette3/repository
