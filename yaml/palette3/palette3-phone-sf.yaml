@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: orange
-  name: svc-palette3-phone
+  name: palette3-phone
   labels:
     app: palette3-phone
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: palette3-phone
   ports:
@@ -24,7 +24,7 @@ metadata:
     app: palette3-phone
 spec:
   replicas: 1
-  serviceName: svc-palette3-phone
+  serviceName: palette3-phone
   #podManagementPolicy: Parallel
   selector:
     matchLabels:

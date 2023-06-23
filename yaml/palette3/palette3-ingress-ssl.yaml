@@ -1,23 +1,23 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: palette3-ingress-ssl
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: nginx
-spec:
-  tls:
-    - hosts:
-        - localhost
-      secretName: palette3-tlssecret
-  rules:
-    - host: localhost
-      http:
-        paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: svc-palette3-api
-                port:
-                  number: 8443
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: palette3-ingress-ssl
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+#    kubernetes.io/ingress.class: nginx
+#spec:
+#  tls:
+#    - hosts:
+#        - localhost
+#      secretName: palette3-tlssecret
+#  rules:
+#    - host: localhost
+#      http:
+#        paths:
+#          - path: /api
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: svc-palette3-api
+#                port:
+#                  number: 8443

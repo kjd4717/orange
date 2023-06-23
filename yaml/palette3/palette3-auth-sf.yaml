@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: orange
-  name: svc-palette3-auth
+  name: palette3-auth
   labels:
     app: palette3-auth
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: palette3-auth
   ports:
@@ -24,7 +24,7 @@ metadata:
     app: palette3-auth
 spec:
   replicas: 1
-  serviceName: svc-palette3-auth
+  serviceName: palette3-auth
   #podManagementPolicy: Parallel
   selector:
     matchLabels:
