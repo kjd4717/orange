@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: palette3-chat
-          image: 172.16.0.100:5000/palette3-api:2023.0622.01
+          image: 172.16.0.100:5000/palette3-api:2023.0623.01
           env:
             - name: JAVA_OPTS
               value: "-Dspring.application.name=palette3-chat -Dspring.profiles.active=production,production-chat,production-phone -Djasypt.key=paletteHello -Dpalette.chat.cipher=Y -Dpalette.chat.key=MnR6bzI4bjdocGEw -Dchat.enabled=false -Dchat.router-enabled=false -Dk8s.node.name=${MY_NODE_NAME} -Dk8s.pod.name=${MY_POD_NAME} -Dk8s.pod.namespace=${MY_POD_NAMESPACE} -Dk8s.pod.ip=${MY_POD_IP}"
