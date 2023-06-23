@@ -44,32 +44,32 @@ spec:
               service:
                 name: svc-palette3-ui
                 port:
-                  number: 8443
+                  number: 3003
           - path: /api
             pathType: Prefix
             backend:
               service:
                 name: svc-palette3-api
                 port:
-                  number: 8443
+                  number: 8080
           - path: /auth-api
             pathType: Prefix
             backend:
               service:
                 name: svc-palette3-auth
                 port:
-                  number: 8443
+                  number: 8080
           - path: /chat-api
             pathType: Prefix
             backend:
               service:
                 name: svc-palette3-chat
                 port:
-                  number: 8443
+                  number: 8080
           - path: /phone-api
             pathType: Prefix
             backend:
               service:
                 name: svc-palette3-phone
                 port:
-                  number: 8443
+                  number: 8080
