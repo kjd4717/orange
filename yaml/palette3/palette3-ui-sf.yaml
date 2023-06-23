@@ -56,8 +56,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          command: [ "ln" ]
-          args: [ "-s", "/orange/app/palette3/repository","/orange/app/palette3/webapps/Repository" ]
+
           volumeMounts:
             - name: palette-repository
               mountPath: /orange/app/palette3/repository
