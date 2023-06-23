@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: orange
+  name: palette3-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: palette3.orange.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-ui
+                port:
+                  number: 3003
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-api
+                port:
+                  number: 8080
+          - path: /auth-api
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-auth
+                port:
+                  number: 8080
+          - path: /chat-api
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-chat
+                port:
+                  number: 8080
+          - path: /phone-api
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-phone
+                port:
+                  number: 8080
