@@ -27,6 +27,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
     - host: palette3.orange.com
       http:
@@ -36,5 +37,33 @@ spec:
             backend:
               service:
                 name: svc-palette3-ui
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-palette3-api
+                port:
+                  number: 80
+          - path: /auth-api
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-palette3-auth
+                port:
+                  number: 80
+          - path: /chat-api
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-palette3-chat
+                port:
+                  number: 80
+          - path: /phone-api
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-palette3-phone
                 port:
                   number: 80
