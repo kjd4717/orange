@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: orange
-  name: svc-palette3-ui
+  name: palette3-ui
   labels:
     app: palette3-ui
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: palette3-ui
   ports:
