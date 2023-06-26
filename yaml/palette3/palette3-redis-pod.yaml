@@ -33,6 +33,18 @@ spec:
       labels:
         app: palette3-redis
     spec:
+      securityContext:
+        sysctls:
+          - name: kernel.shm_rmid_forced
+            value: "0"
+          - name: net.core.somaxconn
+            value: "10000"
+          - name: kernel.msgmax
+            value: "65536"
+          - name: fs.file-max
+            value: "2097152"
+          - name: net.ipv4.ip_local_port_range
+            value: "1024 65536"
       containers:
         - name: palette3-redis
           image: redis:5.0.3
