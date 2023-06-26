@@ -6,7 +6,6 @@ metadata:
   labels:
     app: redis
 spec:
-  type: NodePort
   selector:
     app: redis
   ports:
@@ -15,36 +14,25 @@ spec:
       port: 6379
       targetPort: 6379
 ---
-apiVersion: apps/v1
-kind: StatefulSet
+apiVersion: v1
+kind: Pod
 metadata:
-  name: palette3-redis
   namespace: orange
+  name: palette3-redis
   labels:
     app: redis
 spec:
-  replicas: 1
-  serviceName: palette3-redis
-  #podManagementPolicy: Parallel
-  selector:
-    matchLabels:
-      app: palette3-redis
-  template:
-    metadata:
-      labels:
-        app: palette3-redis
-    spec:
-      containers:
-        - name: palette3-redis
-          image: redis:5.0.3
-          ports:
-            - containerPort: 6379
-              name: redis
-          volumeMounts:
-            - name: redis-data
-              mountPath: /data
-      volumes:
+  containers:
+    - name: palette3-redis
+      image: redis:5.0.3
+      ports:
+        - containerPort: 6379
+          name: redis
+      volumeMounts:
         - name: redis-data
-          nfs:
-            server: 192.168.56.99
-            path: /orange/nfs/redis
+          mountPath: /data
+  volumes:
+    - name: redis-data
+      nfs:
+        server: 192.168.56.99
+        path: /orange/nfs/redis
