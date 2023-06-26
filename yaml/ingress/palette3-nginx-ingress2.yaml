@@ -16,6 +16,13 @@ spec:
                 name: palette3-ui
                 port:
                   number: 3003
+          - path: /Repository
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-ui
+                port:
+                  number: 3003
           - path: /api
             pathType: Prefix
             backend:

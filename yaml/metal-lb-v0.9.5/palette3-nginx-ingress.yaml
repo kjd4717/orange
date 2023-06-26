@@ -32,6 +32,24 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    - host: ttalk.orange.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-ttalk-ui
+                port:
+                  number: 9999
+          - path: /zzz
+            pathType: Prefix
+            backend:
+              service:
+                name: palette3-ttalk-biz
+                port:
+                  number: 9999
+
     - host: palette3.orange.com
       http:
         paths:

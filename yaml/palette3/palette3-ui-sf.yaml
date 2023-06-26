@@ -58,7 +58,7 @@ spec:
                   fieldPath: status.podIP
           volumeMounts:
             - name: palette-repository
-              mountPath: /orange/app/palette3/webapps/Repository
+              mountPath: /orange/app/palette3/webapps/public/Repository
             - name: palette-logs
               mountPath: /orange/app/palette3/logs
       restartPolicy: Always

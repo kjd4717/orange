@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-pod
+spec:
+  containers:
+    - name: nfs-container
+      image: YOUR_NFS_IMAGE
+      volumeMounts:
+        - name: nfs-volume
+          mountPath: /mnt/nfs
+  volumes:
+    - name: nfs-volume
+      nfs:
+        server: 192.168.56.99
+        path: /orange/nfs/repository
