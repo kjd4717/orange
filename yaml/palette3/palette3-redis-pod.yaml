@@ -17,7 +17,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: palette3-phone
+  name: palette3-redis
   namespace: orange
   labels:
     app: redis
