@@ -1,8 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: orange
-  name: palette3-auth
+  name: svc-palette3-auth
   labels:
     app: palette3-auth
 spec:
@@ -19,7 +18,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: palette3-auth
-  namespace: orange
   labels:
     app: palette3-auth
 spec:
@@ -34,9 +32,11 @@ spec:
       labels:
         app: palette3-auth
     spec:
+      imagePullSecrets:
+       - name: regcred 
       containers:
         - name: palette3-auth
-          image: 172.16.0.100:5000/palette3-api:2023.0626.02
+          image: ghcr.io/kjd4717/palette3-api:2023.0628.106
           env:
             - name: JAVA_OPTS
               value: "-Dspring.application.name=palette3-auth -Dspring.profiles.active=production,production-chat,production-phone -Djasypt.key=paletteHello -Dpalette.chat.cipher=Y -Dpalette.chat.key=MnR6bzI4bjdocGEw -Dchat.enabled=false -Dchat.router-enabled=false -Dk8s.node.name=${MY_NODE_NAME} -Dk8s.pod.name=${MY_POD_NAME} -Dk8s.pod.namespace=${MY_POD_NAMESPACE} -Dk8s.pod.ip=${MY_POD_IP}"
@@ -56,18 +56,4 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          volumeMounts:
-            - name: palette-repository
-              mountPath: /orange/app/palette3/repository
-            - name: palette-logs
-              mountPath: /orange/app/palette3/logs
       restartPolicy: Always
-      volumes:
-        - name: palette-repository
-          nfs:
-            server: 192.168.56.99
-            path: /orange/nfs/repository
-        - name: palette-logs
-          nfs:
-            server: 192.168.56.99
-            path: /orange/nfs/logs

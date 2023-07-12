@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: palette3-ui
+  labels:
+    app: palette3-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: palette3-ui
+  template:
+    metadata:
+      labels:
+        app: palette3-ui
+    spec:
+      containers:
+        - name: palette3-ui
+          image: "ghcr.io/kjd4717/palette3-ui:2023.0627.10"
+          ports:
+            - containerPort: 3003
+              protocol: TCP
+      imagePullSecrets:
+       - name: regcred       
