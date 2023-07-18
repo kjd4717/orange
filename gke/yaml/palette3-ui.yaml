@@ -35,7 +35,7 @@ spec:
        - name: palette3-git-regcred
       containers:
         - name: palette3-ui
-          image: "ghcr.io/kjd4717/palette3-ui:2023.0718.001"
+          image: "ghcr.io/kjd4717/palette3-ui:2023.0718.003"
           env:
             - name: NODE_ENV
               value: "production"
