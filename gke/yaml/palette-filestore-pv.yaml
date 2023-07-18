@@ -1,0 +1,580 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: palette-filestore-class
+provisioner: filestore.csi.storage.gke.io
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  tier: enterprise-multishare-rwx
+  network: default
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv1
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv2
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv3
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv4
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv5
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv6
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv7
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv8
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv9
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv10
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv11
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv12
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv13
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv14
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv15
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv16
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv17
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv18
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv19
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv20
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv21
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv22
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv23
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv24
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv25
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv26
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv27
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv28
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: palette-filestore-pv29
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: palette-filestore-class
+  volumeMode: Filesystem
+  csi:
+    driver: filestore.csi.storage.gke.io
+    volumeHandle: "modeInstance/asia-northeast3-b/palette-file/paletteVolume"
+    volumeAttributes:
+      ip: 10.39.97.2
+      volume: paletteVolume
