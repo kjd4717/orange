@@ -1,10 +1,10 @@
 # 준비
 #### 1. PALETTE-UI
   * Dockerfile 설정
-  ![img_4.png](img_4.png)
+  ![img_4.png](assets/img_4.png)
 
   * 도커파일 실행 & 사내도커허브에 이미지생성 
-  ![img_5.png](img_5.png)
+  ![img_5.png](assets/img_5.png)
 
   * 사내도커 허브에서 이미지 태깅 & github repository에 push
     - 172.16.0.100 ssh 접속후
@@ -13,13 +13,13 @@
     docker tag palette3-ui:2023.0718.001 ghcr.io/kjd4717/palette3-ui:2023.0718.001
     docker push ghcr.io/kjd4717/palette3-ui:2023.0718.001
     ```
-    ![img_6.png](img_6.png)
+    ![img_6.png](assets/img_6.png)
     => # GitHub 개인 Profile > Packages 에서 확인
-    ![img_7.png](img_7.png)
+    ![img_7.png](assets/img_7.png)
 
 #### 2. PALETTE-API 
   * Dockerfile 설정
-    ![img_8.png](img_8.png)
+    ![img_8.png](assets/img_8.png)
   * 도커파일 실행 & 사내도커허브에 이미지생성
   * 사내도커 허브에서 이미지 태깅 & github repository에 push
     - 172.16.0.100 ssh 접속후    
@@ -36,7 +36,7 @@
   ```bash
   gcloud container clusters get-credentials palette-cluster-1 --zone asia-northeast3-b --project palette-393108
   ```
-  ![img.png](img1.png)
+  ![img.png](assets/img1.png)
 
 #### 1. github연동 kjd4717계정에 대한 1년짜리로 키 생성 후 함. 
   ```bash
@@ -47,9 +47,9 @@
 
 
 #### 2. FileStore생성
-  ![img.png](img.png)
-  ![img_2.png](img_2.png)
-  ![img_3.png](img_3.png)
+  ![img.png](assets/img.png)
+  ![img_2.png](assets/img_2.png)
+  ![img_3.png](assets/img_3.png)
 
 * GKE Filestore CSI 드라이버가 사용 설정되면 사용자는 다음 구성으로 GKE 제공 멀티 공유 StorageClass enterprise-multishare-rwx에 액세스할 수 있음.
   ```bash
@@ -98,7 +98,7 @@
   ```bash
   gcloud compute addresses create palette3-ingress-ip --global
   ```
-  ![img_9.png](img_9.png)
+  ![img_9.png](assets/img_9.png)
 
 #### 4. 인그레스 생성. 
   * SSL 작업(임시용도)
@@ -107,7 +107,7 @@
     openssl req -new -key ingress-palette3.key -out ingress-palette3.csr
     openssl x509 -req -days 9999 -in ingress-palette3.csr -signkey ingress-palette3.key -out ingress-palette3.crt
     ```
-    ![img_10.png](img_10.png)
+    ![img_10.png](assets/img_10.png)
     
     ```bash
     kubectl create secret tls ingress-palette3-serect --key ./ingress-palette3.key --cert ./ingress-palette3.crt
