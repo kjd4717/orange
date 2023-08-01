@@ -1,5 +1,7 @@
 # 준비
+  ![img_11.png](assets/img_11.png)
 #### 1. PALETTE-UI
+
   * Dockerfile 설정
   ![img_4.png](assets/img_4.png)
 
@@ -9,7 +11,7 @@
   * 사내도커 허브에서 이미지 태깅 & github repository에 push
     - 172.16.0.100 ssh 접속후
     ```bash    
-    docker login ghcr.io -u kjd4717 -p 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
+    docker login ghcr.io -u kjd4717 -p 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
     docker tag palette3-ui:2023.0718.001 ghcr.io/kjd4717/palette3-ui:2023.0718.001
     docker push ghcr.io/kjd4717/palette3-ui:2023.0718.001
     ```
@@ -24,11 +26,12 @@
   * 사내도커 허브에서 이미지 태깅 & github repository에 push
     - 172.16.0.100 ssh 접속후    
     ```bash    
-    docker login ghcr.io -u kjd4717 -p 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
+    docker login ghcr.io -u kjd4717 -p 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
     docker tag palette3-api:2023.0718.001 ghcr.io/kjd4717/palette3-api:2023.0718.001
     docker push ghcr.io/kjd4717/palette3-api:2023.0718.001
     ```
 
+  
 # GKE
 #### 1. DB생성
 
@@ -40,9 +43,9 @@
 
 #### 1. github연동 kjd4717계정에 대한 1년짜리로 키 생성 후 함. 
   ```bash
-  echo "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" > ~/GITHUB_TOKEN.txt 
+  echo "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" > ~/GITHUB_TOKEN.txt 
   cat ~/GITHUB_TOKEN.txt | docker login https://ghcr.io -u kjd4717 --password-stdin    
-  kubectl create secret docker-registry palette3-git-regcred --docker-server=ghcr.io --docker-username=kjd4717 --docker-password=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 --docker-email=jongdeog@gmail.com  
+  kubectl create secret docker-registry palette3-git-regcred --docker-server=ghcr.io --docker-username=kjd4717 --docker-password=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 --docker-email=jongdeog@gmail.com  
   ```  
 
 
@@ -51,7 +54,7 @@
   ![img_2.png](assets/img_2.png)
   ![img_3.png](assets/img_3.png)
 
-* GKE Filestore CSI 드라이버가 사용 설정되면 사용자는 다음 구성으로 GKE 제공 멀티 공유 StorageClass enterprise-multishare-rwx에 액세스할 수 있음.
+  * GKE Filestore CSI 드라이버가 사용 설정되면 사용자는 다음 구성으로 GKE 제공 멀티 공유 StorageClass enterprise-multishare-rwx에 액세스할 수 있음.
   ```bash
     -사용설정
     gcloud container clusters update palette-cluster-1 --update-addons=GcpFilestoreCsiDriver=ENABLED --location asia-northeast3-b
@@ -63,18 +66,19 @@
     kubectl describe sc enterprise-multishare-rwx
   
   ```
-* 인스턴스 액세스를 위한 StorageClass, PersistentVolume 및 PersistentVolumeClaim 만들기 - palette-filestore-pv.yaml
+  * 인스턴스 액세스를 위한 StorageClass, PersistentVolume 및 PersistentVolumeClaim 만들기 - palette-filestore-pv.yaml
   ```bash
     -생성확인
       kubectl get pv
   ```
 
-#### 2. palette-configmap 생성
+#### 2. palette-configmap-api, -auth, -chat, -phone 생성
+  * -chat.yaml 인경우 CHAT_ENABLED, CHAT_ROUTER-ENABLED 값을 true로 한다.
   ```yaml
     apiVersion: v1
     kind: ConfigMap
     metadata:
-      name: palette-configmap
+      name: palette-configmap-api
     data:
       SERVER_PORT: "8080"
       SPRING_PROFILES_ACTIVE: production,production-chat,production-phone
@@ -87,18 +91,15 @@
       CHAT_ENABLED: "false"
       CHAT_ROUTER-ENABLED: "false"
   ```
-  * worker node1 접속 후 토큰 붙여놓기 (id/pw: root/vagrant)
-  ```bash
-  [root@k8s-node1 ~]# kubeadm join 192.168.56.30:6443 --token bver73.wda72kx4afiuhspo --discovery-token-ca-cert-hash sha256:7205b3fd6030e47b74aa11451221ff3c77daa0305aad0bc4a2d3196e69eb42b7
-  ```
 
-#### 3. palette-ui, palette-api, palette-auth, palette-chat, palette-phone 생성. 
+#### 3. palette-ui, palette-api, palette-auth, palette-chat, palette-phone 생성.
 
-#### 4. 인그레스용 gcloud 명령을 이용하여, global IP를 생성한다 생성. 
+#### 4. 인그레스용 gcloud 명령을 이용하여, global IP를 생성한다 생성.
   ```bash
   gcloud compute addresses create palette3-ingress-ip --global
   ```
-  ![img_9.png](assets/img_9.png)
+![img_9.png](assets/img_9.png)
+
 
 #### 4. 인그레스 생성. 
   * SSL 작업(임시용도)
@@ -112,68 +113,114 @@
     ```bash
     kubectl create secret tls ingress-palette3-serect --key ./ingress-palette3.key --cert ./ingress-palette3.crt
     ```
-
-  * 1
+* SSL 작업(orange.hkpalette.com)
+  ```bash
+  kubectl create secret tls ingress-orange-hkpalette-com-serect --key ./ssl/orange.hkpalette.com/private.pem --cert ./ssl/orange.hkpalette.com/cert.pem
+  ```  
     ```yaml
     apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        name: ingress-palette3
-        annotations:
-          kubernetes.io/ingress.global-static-ip-name: "palette3-ingress-ip"
-      spec:
-        tls:
-          - secretName: ingress-palette3-serect
-        rules:
-          - http:
-              paths:
-                - path: /
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-ui
-                      port:
-                        number: 3003
-                - path: /api
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-api
-                      port:
-                        number: 8080
-                - path: /auth-api
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-auth
-                      port:
-                        number: 8080
-                - path: /chat-api
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-chat
-                      port:
-                        number: 8080
-                - path: /phone-api
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-phone
-                      port:
-                        number: 8080
-                - path: /sockjs-node
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-ui
-                      port:
-                        number: 3003
-                - path: /secured/ws-stomp
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: palette3-api
-                      port:
-                        number: 8080
+    kind: Ingress
+    metadata:
+      name: ingress-palette3
+      annotations:
+        kubernetes.io/ingress.global-static-ip-name: "palette3-ingress-ip"
+    spec:
+      tls:
+        - secretName: ingress-orange-hkpalette-com-serect
+      rules:
+        - http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-ui
+                    port:
+                      number: 3003
+              - path: /sockjs-node
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-ui
+                    port:
+                      number: 3003
+              - path: /.well-known
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-ui
+                    port:
+                      number: 3003
+              - path: /api
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-api
+                    port:
+                      number: 8080
+              - path: /upload/images
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-api
+                    port:
+                      number: 8080
+              - path: /auth-api
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-auth
+                    port:
+                      number: 8080
+              - path: /chat-api
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-chat
+                    port:
+                      number: 8080
+              - path: /message
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-chat
+                    port:
+                      number: 8080
+              - path: /secured/ws-stomp
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-chat
+                    port:
+                      number: 8080
+              - path: /reference
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-chat
+                    port:
+                      number: 8080
+              - path: /expired_session
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-chat
+                    port:
+                      number: 8080
+              - path: /phone-api
+                pathType: Prefix
+                backend:
+                  service:
+                    name: palette3-phone
+                    port:
+                      number: 8080
+    ---
+    apiVersion: networking.gke.io/v1beta1
+    kind: FrontendConfig
+    metadata:
+      name: http-to-https
+    spec:
+      redirectToHttps:
+        enabled: true
+        responseCodeName: PERMANENT_REDIRECT  
     ```
