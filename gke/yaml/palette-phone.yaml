@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: palette3-chat
+  name: palette3-phone
   labels:
-    app: palette3-chat
+    app: palette3-phone
 spec:
   type: NodePort
   selector:
-    app: palette3-chat
+    app: palette3-phone
   ports:
-    - name: palette3-chat
+    - name: palette3-phone
       protocol: TCP
       port: 8080
       targetPort: 8080
@@ -17,31 +17,33 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: palette3-chat
+  name: palette3-phone
   labels:
-    app: palette3-chat
+    app: palette3-phone
 spec:
   replicas: 1
-  serviceName: palette3-chat
+  serviceName: palette3-phone
   #podManagementPolicy: Parallel
   selector:
     matchLabels:
-      app: palette3-chat
+      app: palette3-phone
   template:
     metadata:
       labels:
-        app: palette3-chat
+        app: palette3-phone
     spec:
       restartPolicy: Always
       imagePullSecrets:
        - name: palette3-git-regcred 
       containers:
-        - name: palette3-chat
-          image: ghcr.io/kjd4717/palette3-api:2023.0718.001
+        - name: palette3-phone
+          image: ghcr.io/kjd4717/palette3-api:2023.0721.005
           envFrom:
           - configMapRef:
-              name: palette-configmap
+              name: palette-configmap-phone
           env:
+            - name: JAVA_OPTS
+              value: "-Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8"
             - name: K8S_NODE_NAME
               valueFrom:
                 fieldRef:
@@ -60,13 +62,14 @@ spec:
                   fieldPath: status.podIP
           volumeMounts:
             - name: palette-repository
-              mountPath: /orange/app/palette3/repository        
-  volumeClaimTemplates:
-  - metadata:
-      name: palette-repository
-    spec:
-      accessModes: [ "ReadWriteMany" ]
-      storageClassName: "palette-filestore-class"
-      resources:
-        requests:
-          storage: 1Ti                    
+              mountPath: /orange/app/palette3/repository
+            - name: tz-seoul
+              mountPath: /etc/localtime
+      volumes:
+        - name: tz-seoul
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Seoul
+        - name: palette-repository
+          nfs:
+            server: 10.39.97.2
+            path: /paletteVolume        
