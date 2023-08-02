@@ -8,7 +8,7 @@
   * 도커파일 실행 & 사내도커허브에 이미지생성 
   ![img_5.png](assets/img_5.png)
 
-  * 사내도커 허브에서 이미지 태깅 & github repository에 push
+  * 사내도커 허브 또는 로컬에서 이미지 태깅 & github repository에 push
     - 172.16.0.100 ssh 접속후
     ```bash    
     docker login ghcr.io -u kjd4717 -p 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
@@ -33,9 +33,7 @@
 
   
 # GKE
-
-  ![img_12.png](assets/img_12.png)
-
+  ![img_13.png](assets/img_13.png)
 #### 1. DB생성
 
 #### 1. 구글콘솔 클러스터 연결
@@ -217,13 +215,5 @@
                     name: palette3-phone
                     port:
                       number: 8080
-    ---
-    apiVersion: networking.gke.io/v1beta1
-    kind: FrontendConfig
-    metadata:
-      name: http-to-https
-    spec:
-      redirectToHttps:
-        enabled: true
-        responseCodeName: PERMANENT_REDIRECT  
+  
     ```
